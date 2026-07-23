@@ -27,7 +27,11 @@ export default async function LoginPage({
             placeholder="예: 김클로드"
             className="bevel-in w-full max-w-xs bg-cream px-4 py-3 text-center font-body text-xl text-ink outline-none"
           />
-          {error ? (
+          {error === "2" ? (
+            <p className="font-body text-base text-red-accent">
+              허용되지 않은 이름이에요.
+            </p>
+          ) : error ? (
             <p className="font-body text-base text-red-accent">
               이름을 입력해주세요.
             </p>

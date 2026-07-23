@@ -2,13 +2,17 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { SESSION_COOKIE } from "@/lib/session";
+import { ALLOWED_USERS, SESSION_COOKIE } from "@/lib/session";
 
 export async function loginAction(formData: FormData) {
   const name = String(formData.get("name") ?? "").trim();
 
   if (!name) {
     redirect("/login?error=1");
+  }
+
+  if (!ALLOWED_USERS.includes(name.toLowerCase())) {
+    redirect("/login?error=2");
   }
 
   const cookieStore = await cookies();
