@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #c7c3ee;
+  --foreground: #201a3d;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  /* Y2K retro-futurism palette: lavender/periwinkle base, purple accents, cream highlights */
+  --color-lavender: #c7c3ee;
+  --color-lavender-deep: #b0abe6;
+  --color-periwinkle: #9d96e0;
+  --color-purple: #5a469c;
+  --color-purple-deep: #46356f;
+  --color-purple-darker: #2b2050;
+  --color-cream: #f4ecd8;
+  --color-beige: #e6dcbd;
+  --color-ink: #201a3d;
+  --color-orange: #ff7a4a;
+  --color-red-accent: #e24b3a;
+  --color-neon: #d3ff5c;
+  --color-sky-top: #cfe0ff;
+  --color-sky-bottom: #b8b0ec;
+
+  --font-display: var(--font-press-start-2p);
+  --font-body: var(--font-vt323);
+
+  --shadow-pixel-sm: 2px 2px 0 0 var(--color-ink);
+  --shadow-pixel: 4px 4px 0 0 var(--color-ink);
+  --shadow-pixel-lg: 6px 6px 0 0 var(--color-ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-lavender);
+  color: var(--color-ink);
+  /* low-contrast argyle/diamond texture, pure CSS, no image assets */
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(90, 70, 156, 0.09) 0,
+      rgba(90, 70, 156, 0.09) 2px,
+      transparent 2px,
+      transparent 28px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(90, 70, 156, 0.09) 0,
+      rgba(90, 70, 156, 0.09) 2px,
+      transparent 2px,
+      transparent 28px
+    );
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 2 L3 19 L7.5 15.5 L10.5 21.5 L13.5 20 L10.5 14 L17 14 Z' fill='%23201a3d' stroke='%23f4ecd8' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
+      2 2,
+    auto;
+}
+
+::selection {
+  background: var(--color-neon);
+  color: var(--color-ink);
+}
+
+/* ---------- Pixel bevel / hard-shadow utility classes ---------- */
+
+.bevel-out {
+  border: 2px solid var(--color-ink);
+  box-shadow:
+    inset 2px 2px 0 0 rgba(255, 255, 255, 0.6),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.3),
+    var(--shadow-pixel);
+}
+
+.bevel-in {
+  border: 2px solid var(--color-ink);
+  box-shadow:
+    inset -2px -2px 0 0 rgba(255, 255, 255, 0.55),
+    inset 2px 2px 0 0 rgba(0, 0, 0, 0.3);
+}
+
+.pixel-btn {
+  box-shadow: var(--shadow-pixel);
+  transition: box-shadow 0.08s ease;
+}
+.pixel-btn:hover {
+  box-shadow: var(--shadow-pixel-sm);
+}
+.pixel-btn:active {
+  box-shadow: 0 0 0 0 var(--color-ink);
+}
+
+.pixel-btn-lg {
+  box-shadow: var(--shadow-pixel-lg);
+  transition: box-shadow 0.08s ease;
+}
+.pixel-btn-lg:hover {
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+}
+.pixel-btn-lg:active {
+  box-shadow: 0 0 0 0 var(--color-ink);
+}
+
+/* Crisp pixel edges for inline SVG illustrations */
+.pixel-shape {
+  shape-rendering: crispEdges;
 }
