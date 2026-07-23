@@ -1,33 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #c7c3ee;
-  --foreground: #201a3d;
+  --background: #f2e8db;
+  --foreground: #423b57;
 }
 
 @theme {
-  /* Y2K retro-futurism palette: lavender/periwinkle base, purple accents, cream highlights */
-  --color-lavender: #c7c3ee;
-  --color-lavender-deep: #b0abe6;
-  --color-periwinkle: #9d96e0;
-  --color-purple: #5a469c;
-  --color-purple-deep: #46356f;
-  --color-purple-darker: #2b2050;
-  --color-cream: #f4ecd8;
-  --color-beige: #e6dcbd;
-  --color-ink: #201a3d;
-  --color-orange: #ff7a4a;
-  --color-red-accent: #e24b3a;
-  --color-neon: #d3ff5c;
-  --color-sky-top: #cfe0ff;
-  --color-sky-bottom: #b8b0ec;
+  /* Warm editorial palette: cream paper, terracotta headings, navy-plum body, muted teal accent */
+  --color-lavender: #ece1d2;
+  --color-lavender-deep: #e2d4c0;
+  --color-periwinkle: #d8e2df;
+  --color-purple: #4f8394;
+  --color-purple-deep: #386571;
+  --color-purple-darker: #2c2a3a;
+  --color-cream: #f2e8db;
+  --color-beige: #e9dcc8;
+  --color-ink: #423b57;
+  --color-orange: #c97b5a;
+  --color-red-accent: #b6553d;
+  --color-neon: #bcdad7;
 
-  --font-display: var(--font-press-start-2p);
-  --font-body: var(--font-vt323);
+  --font-display: var(--font-playfair-display);
+  --font-body: var(--font-lora);
 
-  --shadow-pixel-sm: 2px 2px 0 0 var(--color-ink);
-  --shadow-pixel: 4px 4px 0 0 var(--color-ink);
-  --shadow-pixel-lg: 6px 6px 0 0 var(--color-ink);
+  --shadow-soft: 0 1px 2px rgba(66, 59, 87, 0.06), 0 6px 20px -10px rgba(66, 59, 87, 0.25);
+  --shadow-soft-sm: 0 1px 2px rgba(66, 59, 87, 0.08);
 }
 
 * {
@@ -39,28 +36,8 @@ html {
 }
 
 body {
-  background-color: var(--color-lavender);
+  background-color: var(--color-cream);
   color: var(--color-ink);
-  /* low-contrast argyle/diamond texture, pure CSS, no image assets */
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      rgba(90, 70, 156, 0.09) 0,
-      rgba(90, 70, 156, 0.09) 2px,
-      transparent 2px,
-      transparent 28px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(90, 70, 156, 0.09) 0,
-      rgba(90, 70, 156, 0.09) 2px,
-      transparent 2px,
-      transparent 28px
-    );
-  cursor:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 2 L3 19 L7.5 15.5 L10.5 21.5 L13.5 20 L10.5 14 L17 14 Z' fill='%23201a3d' stroke='%23f4ecd8' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
-      2 2,
-    auto;
 }
 
 ::selection {
@@ -68,46 +45,100 @@ body {
   color: var(--color-ink);
 }
 
-/* ---------- Pixel bevel / hard-shadow utility classes ---------- */
+/* ---------- Soft, flat utility classes (no boxes/borders by default) ---------- */
 
 .bevel-out {
-  border: 2px solid var(--color-ink);
-  box-shadow:
-    inset 2px 2px 0 0 rgba(255, 255, 255, 0.6),
-    inset -2px -2px 0 0 rgba(0, 0, 0, 0.3),
-    var(--shadow-pixel);
+  box-shadow: var(--shadow-soft);
+  border-radius: 4px;
 }
 
 .bevel-in {
-  border: 2px solid var(--color-ink);
-  box-shadow:
-    inset -2px -2px 0 0 rgba(255, 255, 255, 0.55),
-    inset 2px 2px 0 0 rgba(0, 0, 0, 0.3);
+  background: rgba(66, 59, 87, 0.05);
+  border-radius: 4px;
 }
 
 .pixel-btn {
-  box-shadow: var(--shadow-pixel);
-  transition: box-shadow 0.08s ease;
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft-sm);
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 .pixel-btn:hover {
-  box-shadow: var(--shadow-pixel-sm);
+  box-shadow: var(--shadow-soft);
 }
 .pixel-btn:active {
-  box-shadow: 0 0 0 0 var(--color-ink);
+  transform: translateY(1px);
 }
 
 .pixel-btn-lg {
-  box-shadow: var(--shadow-pixel-lg);
-  transition: box-shadow 0.08s ease;
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 .pixel-btn-lg:hover {
-  box-shadow: 4px 4px 0 0 var(--color-ink);
+  box-shadow: 0 2px 4px rgba(66, 59, 87, 0.1), 0 10px 28px -10px rgba(66, 59, 87, 0.3);
 }
 .pixel-btn-lg:active {
-  box-shadow: 0 0 0 0 var(--color-ink);
+  transform: translateY(1px);
 }
 
-/* Crisp pixel edges for inline SVG illustrations */
 .pixel-shape {
-  shape-rendering: crispEdges;
+  border-radius: 999px;
+}
+
+/* ---------- Markdown preview (workspace meeting notes) ---------- */
+
+.md-preview h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-orange);
+  font-size: 1.5rem;
+  margin: 0.9rem 0 0.4rem;
+}
+.md-preview h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-orange);
+  font-size: 1.2rem;
+  margin: 0.8rem 0 0.35rem;
+}
+.md-preview h3 {
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin: 0.7rem 0 0.3rem;
+}
+.md-preview p {
+  margin: 0.5rem 0;
+}
+.md-preview ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+.md-preview ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+.md-preview li {
+  margin: 0.15rem 0;
+}
+.md-preview code {
+  background: var(--color-beige);
+  padding: 0 4px;
+}
+.md-preview blockquote {
+  border-left: 3px solid var(--color-purple);
+  padding-left: 0.75rem;
+  color: rgba(66, 59, 87, 0.7);
+}
+.md-preview strong {
+  font-weight: bold;
+}
+.md-preview a {
+  text-decoration: underline;
+  color: var(--color-purple-deep);
 }

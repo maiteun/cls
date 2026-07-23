@@ -1,29 +1,25 @@
 "use client";
 
-import RetroWindow from "./RetroWindow";
+import { motion } from "framer-motion";
 
 export default function Motivation() {
   return (
-    <section id="motivation" className="mx-auto max-w-3xl px-4 pt-10 sm:pt-14">
-      <div className="mx-auto max-w-sm">
-        <RetroWindow
-          title="시스템 알림"
-          titleBarClassName="!bg-purple-darker"
-          bodyClassName="text-center"
-        >
-          <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center border-2 border-ink bg-neon font-display text-sm">
-            !
-          </div>
-          <p className="font-display text-[11px] sm:text-xs leading-loose text-purple-deep">
-            AI 활용 능력이 취업 시장의
-            <br />
-            새로운 무기가 되고 있습니다
-          </p>
-          <p className="mt-3 font-body text-lg text-ink/70">
-            지금 시작하지 않으면, 그 격차는 더 벌어집니다.
-          </p>
-        </RetroWindow>
-      </div>
-    </section>
+    <motion.section
+      id="motivation"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.6 }}
+      className="mx-auto max-w-2xl px-4 pt-16 text-center sm:pt-20"
+    >
+      <p className="font-display text-xl leading-relaxed text-orange sm:text-2xl">
+        AI 활용 능력이 취업 시장의
+        <br />
+        새로운 무기가 되고 있습니다
+      </p>
+      <p className="mt-3 font-body text-xl text-ink/70 sm:text-2xl">
+        지금 시작하지 않으면, 그 격차는 더 벌어집니다.
+      </p>
+    </motion.section>
   );
 }

@@ -1,35 +1,47 @@
 "use client";
 
 import { motion } from "framer-motion";
-import RetroWindow from "./RetroWindow";
-import PixelIllustration from "./PixelIllustration";
 
 export default function Hero() {
   return (
-    <section id="hero" className="mx-auto max-w-3xl px-4 pt-10 sm:pt-16">
-      <RetroWindow
-        title="CLAUDE STUDY"
-        subtitleBar="AI를 제대로 쓰는 능력, 같이 만듭니다"
-      >
-        <PixelIllustration />
+    <section
+      id="hero"
+      className="mx-auto flex max-w-2xl flex-col items-center gap-5 px-4 pt-16 text-center sm:pt-24"
+    >
+      <h1 className="font-display text-4xl font-semibold text-ink sm:text-5xl">
+        CLAUDE STUDY
+      </h1>
 
-        <div className="mt-6 flex flex-col items-center gap-4 text-center">
-          <p className="font-body text-lg sm:text-xl leading-snug text-ink/80 max-w-md">
-            바이브코딩 · MCP 자동화 · 클로드 디자인까지, 한 스터디에서 처음부터
-            같이 만들어갑니다.
-          </p>
+      <p className="font-display text-lg text-orange sm:text-xl">
+        우린 클로드로 진짜 만드는 스터디를 합니다.
+      </p>
 
-          <motion.a
-            href="#apply"
-            whileHover={{ x: 3, y: 3 }}
-            whileTap={{ x: 6, y: 6 }}
-            transition={{ type: "spring", stiffness: 500, damping: 25 }}
-            className="pixel-btn-lg bevel-out inline-block bg-orange px-8 py-4 font-display text-xs sm:text-sm text-ink"
-          >
-            지원하기 ▶
-          </motion.a>
-        </div>
-      </RetroWindow>
+      <p className="max-w-md font-body text-xl leading-snug text-ink/80 sm:text-2xl">
+        바이브코딩 · MCP 자동화 · 클로드 디자인까지 처음부터 같이
+        만들어갈 사람을 찾습니다.
+      </p>
+
+      <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
+        <motion.a
+          href="#apply"
+          whileHover={{ y: -2 }}
+          whileTap={{ y: 0 }}
+          transition={{ type: "spring", stiffness: 500, damping: 25 }}
+          className="pixel-btn-lg inline-block bg-orange px-8 py-3 font-display text-sm text-cream"
+        >
+          참여하기
+        </motion.a>
+
+        <motion.a
+          href="/login"
+          whileHover={{ y: -2 }}
+          whileTap={{ y: 0 }}
+          transition={{ type: "spring", stiffness: 500, damping: 25 }}
+          className="pixel-btn-lg inline-block bg-periwinkle px-8 py-3 font-display text-sm text-ink"
+        >
+          Login
+        </motion.a>
+      </div>
     </section>
   );
 }

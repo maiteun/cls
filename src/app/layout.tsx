@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Press_Start_2P, VT323 } from "next/font/google";
+import { Playfair_Display, Lora } from "next/font/google";
 import "./globals.css";
 
-const pressStart2P = Press_Start_2P({
-  variable: "--font-press-start-2p",
-  weight: "400",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  weight: ["600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const vt323 = VT323({
-  variable: "--font-vt323",
-  weight: "400",
+const lora = Lora({
+  variable: "--font-lora",
+  weight: ["400", "500", "600"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${pressStart2P.variable} ${vt323.variable}`}>
+    <html lang="ko" className={`${playfairDisplay.variable} ${lora.variable}`}>
       <body className="min-h-screen font-body text-ink antialiased pb-16 sm:pb-14">
         {children}
       </body>
